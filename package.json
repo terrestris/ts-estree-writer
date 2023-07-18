@@ -1,0 +1,22 @@
+{
+  "name": "ts-estree-writer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run typecheck",
+    "typecheck": "tsc --noEmit",
+    "build": "rollup -c"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@typescript-eslint/ast-spec": "https://gitpkg.now.sh/typescript-eslint/typescript-eslint/packages/ast-spec?main"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.2",
+    "rollup": "^3.26.3",
+    "tslib": "^2.6.0",
+    "typescript": "^5.1.6"
+  }
+}
