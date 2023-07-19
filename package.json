@@ -2,10 +2,12 @@
   "name": "ts-estree-writer",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "npm run typecheck",
-    "typecheck": "tsc --noEmit",
+    "test": "npm run test:typecheck && npm run test:spec && npm run test:lint",
+    "test:spec": "mocha",
+    "test:typecheck": "tsc --noEmit",
+    "test:lint": "eslint src/ test/",
     "build": "rollup -c"
   },
   "author": "",
@@ -15,7 +17,15 @@
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.2",
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "chai": "^4.3.7",
+    "eslint": "^8.45.0",
+    "mocha": "^10.2.0",
     "rollup": "^3.26.3",
+    "ts-node": "^10.9.1",
     "tslib": "^2.6.0",
     "typescript": "^5.1.6"
   }
