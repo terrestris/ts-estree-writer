@@ -1,10 +1,19 @@
-import {ImportDeclaration, ImportDefaultSpecifier, ImportNamespaceSpecifier, ImportSpecifier} from "estree";
 import * as ts from "typescript";
 import {assertsString} from "../utils/asserts";
+import {TypeNotImplementedError} from "../utils/notImplementedError";
+import type { TSESTree } from '@typescript-eslint/types';
+import {transformLiteral} from "./literal";
 
-export function transformImportClause(nodes: Array<ImportSpecifier | ImportDefaultSpecifier | ImportNamespaceSpecifier>): ts.ImportClause {
-    if (nodes.length > 1 || nodes[0].type !== 'ImportDefaultSpecifier') {
-        throw new Error('Only default imports are implemented');
+export function isImportDeclaration(node: TSESTree.BaseNode): node is TSESTree.ImportDeclaration {
+    return node.type === 'ImportDeclaration';
+}
+
+export function transformImportClause(nodes: Array<TSESTree.ImportSpecifier | TSESTree.ImportDefaultSpecifier | TSESTree.ImportNamespaceSpecifier>): ts.ImportClause {
+    if (nodes.length > 1) {
+        throw new Error('Multiple Imports in one statement are not implemented');
+    }
+    if (nodes[0].type !== 'ImportDefaultSpecifier') {
+        throw new TypeNotImplementedError(nodes[0].type, 'ImportClause');
     }
     return ts.factory.createImportClause(
         false,
@@ -13,13 +22,11 @@ export function transformImportClause(nodes: Array<ImportSpecifier | ImportDefau
     );
 }
 
-export function transformImportDeclaration(node: ImportDeclaration): ts.ImportDeclaration {
-    const value = node.source.value;
-    assertsString(value);
+export function transformImportDeclaration(node: TSESTree.ImportDeclaration): ts.ImportDeclaration {
     return ts.factory.createImportDeclaration(
         undefined,
         transformImportClause(node.specifiers),
-        ts.factory.createStringLiteral(value, true),
+        transformLiteral(node.source),
         undefined
     );
 }
