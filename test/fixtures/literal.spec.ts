@@ -1,4 +1,4 @@
-import {itWrites} from "./index";
+import {itWrites} from "../index";
 
 describe('transformers/literal', () => {
     itWrites(

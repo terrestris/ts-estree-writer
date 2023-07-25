@@ -10,8 +10,8 @@
     "test:lint": "eslint src/ test/",
     "build": "rollup -c"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Simon Seyock",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.2",
     "@types/chai": "^4.3.5",
