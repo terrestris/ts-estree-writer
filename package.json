@@ -12,6 +12,9 @@
   },
   "author": "Simon Seyock",
   "license": "Apache-2.0",
+  "dependencies": {
+    "typescript": "^5.1.6"
+  },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.2",
     "@types/chai": "^4.3.5",
@@ -24,7 +27,6 @@
     "mocha": "^10.2.0",
     "rollup": "^3.26.3",
     "ts-node": "^10.9.1",
-    "tslib": "^2.6.0",
-    "typescript": "^5.1.6"
+    "tslib": "^2.6.0"
   }
 }
